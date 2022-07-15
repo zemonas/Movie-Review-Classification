@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {%block head %} {% endblock%} {%block body %}
+<h1>Movie Review Classification</h1>
+<form action="/predict" method="POST">
+  <input type="text" id="review" name="review" />
+  <input type="submit" />
+</form>
+<div class="container">
+  <div class="positive">
+    {% for record in records %} {%if record.res == 1%}
+    <div class="review">{{record.review}}</div>
+    {% endif %} {% endfor %}
+  </div>
+  <div class="negative">
+    {% for record in records %} {%if record.res == 0%}
+    <div class="review">{{record.review}}</div>
+    {% endif %} {% endfor %}
+  </div>
+</div>
+
+{% endblock%}
