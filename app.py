@@ -26,24 +26,21 @@ def hello():
 
 @app.route("/predict", methods=['POST'])
 def prediction():
-    if request.method == 'POST':
-        review = request.form["review"]
-        pred = p.prediction(review)
-        prediction = pred[0]
-        if(prediction == 'neg'):
-            prediction = 0
-        if(prediction == 'pos'):
-            prediction = 1
-        new_review = history(review=review, res=prediction)
-        print(prediction)
-        try:
-            db.session.add(new_review)
-            db.session.commit()
-            return redirect('/')
-        except:
-            return 'there was an issue adding task in records'
-    else:
+    review = request.form["review"]
+    pred = p.prediction(review)
+    prediction = pred[0]
+    if(prediction == 'neg'):
+        prediction = 0
+    if(prediction == 'pos'):
+        prediction = 1
+    new_review = history(review=review, res=prediction)
+    print(prediction)
+    try:
+        db.session.add(new_review)
+        db.session.commit()
         return redirect('/')
+    except:
+        return 'there was an issue adding task in records'
 
 
 if __name__ == "__main__":
