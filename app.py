@@ -3,7 +3,6 @@ import prediction as p
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
-nltk.download('stopwords')
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///records.db'
 db = SQLAlchemy(app)
