@@ -26,7 +26,7 @@ def hello():
 
 @app.route("/predict", methods=['POST'])
 def prediction():
-    if(methods == 'POST'):
+    if request.method == 'POST':
         review = request.form["review"]
         pred = p.prediction(review)
         prediction = pred[0]
